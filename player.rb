@@ -28,10 +28,12 @@ class Player
 
   def collect_treasure(sum)
     @gold_coins += sum
-    @score += 1 if @gold_coins >= 10
-    @gold_coins = (@gold_coins - 10) if @gold_coins >=10 #wraps count to include coins over 10
+    @score += (@gold_coins / 10) if @gold_coins >= 10
+    @gold_coins = (@gold_coins % 10) if @gold_coins >=10 #wraps count to include coins over 10
+    @gold_coins = 0 if @gold_coins == 10
     level_up if @score >= 10
     @score = 0 if @score >= 10
+
 
     #below is the beginning of an attempt at getting a counter that doesn't reset
 
